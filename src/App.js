@@ -4,12 +4,9 @@ import { ClienteContext, ClienteProvider } from './context/Cliente';
 import { useContext, useEffect } from 'react';
 import Table from './components/Table';
 import Login from './page/Login';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Routes, Route, Outlet, Link, BrowserRouter as Router } from 'react-router-dom';
+import Home from './page/Home';
+import Header from './components/Header';
 
 
 const App = () => {
@@ -21,17 +18,22 @@ const App = () => {
   return (
  
 
-  
+   <ClienteProvider>
       <div className="App">
-      <ClienteProvider>
+     
 
+    <Router>
+      <Header/>
+        <Routes >
+          <Route path="/" element={<Home />}/>
+          <Route path="/login"   element={ <Login/> } />
 
-       <Login></Login>
+        </Routes>
+    </Router>
 
-
-     </ClienteProvider>  
-      </div>
     
+      </div>
+     </ClienteProvider>  
      
   );
 }
